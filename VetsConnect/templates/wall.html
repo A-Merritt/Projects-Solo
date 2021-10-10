@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+
+<body>
+    <div class= "WallWrapper">
+        <div class= "wallcontent">
+            <div class="titleCent">
+                <div class="titleWall">
+                    <h1>Veterans Connect</h1>
+                    <div class="white">
+                        <p class="white">"A Place Where All Veterans Belong"</p>
+                    </div>
+                </div>
+                <img src="https://cdn2.bigcommerce.com/n-nr1m3w/3tc5m/products/268/images/739/IRflag__51853.1435790667.1280.1280.png?c=2" alt="Black and White American Flag" style="width:300px; height:150px;margin-top:20px;">
+            </div>
+            <div class="wallhead">
+                <h3>{{user.first_name}} {{user.last_name}}</h3>
+                <div class="WBUTT">
+                    <button class="wallButt"><a href="/index">Account Settings</a></button>
+                    <button class="wallButt"><a href="/logout">Logout</a></button>
+                </div>
+            </div>
+            <div class="newsfeed">
+                <h2><u>Newsfeed</u></h2>
+            </div>    
+            <div class="Wallform">
+            <!--Running through all messages through a for loop.-->  
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <h3 class="white">How Are you Feeling Today?</h3>
+                <form action="/post_message" method="POST">
+                    {% csrf_token %}
+                    <p><b><u>MESSAGE:</u></b> <input class="textbox" type="text" name="content"></p>  <!-- The part 'name="message''' doesn't need to match my models table but when I go to request.POST, then the request.POST method HAS to match this name. -->
+                    <button class="wallButt" type="submit"> Post</button>
+                </form>
+            </div>
+            
+        <!--MESSAGES BELOW-->
+            <div class="wallContent">
+                {% for message in all_messages reversed %}
+                <div class= "messageBox">
+                     <!--We can do this loop to now pull in the variable 'all_messages' that we defined in views.py under 'def wall' // Using 'reversed' to get newest comments on top--> 
+                    <p><b><a href="/users/{{message.creator.id}}">{{message.creator.first_name}} {{message.creator.last_name}}</a> - {{message.created_at}}</b></p>    <!--  Could Do the following line instead of <a href line here> would look as such: {{message.creator.first_name}} {{message.creator.last_name}} - {{message.created_at}}</b></p> -->
+                    <p>"{{message.content}}"</p>
+                    <!--Creating code for the user to edit their own message-->
+                    {% if message.creator.id == user.id %}
+                    <button class="wallButt"><a href="/messages/{{message.id}}/edit">Edit</a></button>
+                    {% endif %}
+                    <!--This is where we are adding in who "liked" the message-->
+                    {% if message.users_who_liked.all %}
+                        {% if user in message.users_who_liked.all %}
+                            <a href='/messages/{{message.id}}/dislike'><button class="wallButt">Likes: {{message.users_who_liked.count}}</button></a>
+                        {% else %}
+                            <a href='/messages/{{message.id}}/like'><button class="wallButt">Likes: {{message.users_who_liked.count}}</button></a>
+                        {% endif %}
+                    {% else %}
+                        <button class="wallButt"><a href='/messages/{{message.id}}/like'>Like</a></button>
+                    {% endif %}
+                    <form action="/messages/{{message.id}}/post_comment" method="POST">
+                        {% csrf_token %}
+                        <p><b><u>Comment:</u></b> <input class= "commentBox" type="text" name="content"></p>  <!-- The part 'name="message''' doesn't need to match my models table but when I go to request.POST, then the request.POST method HAS to match this name. -->
+                        <button class="wallButt" type="submit">Post</button>
+                    </form>
+                </div>
+                <!--COMMENTS BELOW-->
+                {% for comment in message.comments.all %}
+                <div class="comment">
+                    <p><b>In Response to:</b> {{message.creator.first_name}}'s post at <b>{{message.created_at}}</b></p>
+                    <p><b><a href="/users/{{comment.creator.id}}">{{comment.creator.first_name}} {{comment.creator.last_name}}</a> - {{comment.created_at}}</b></p>
+                        <p>"{{comment.content}}"</p>
+                        {% if comment.creator.id == user.id %}
+                        <form action = "/messages/{{comment.id}}/deleteComment" method="POST">
+                            {% csrf_token %}
+                            <button class="editButt" type= "submit">Delete</button>
+                        </form>                        
+                        {% endif %}
+                </div>   
+                {% endfor %}    
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

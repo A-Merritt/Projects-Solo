@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Page</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div class="editWrapper">
+        <div class="editHead">
+            <button class="editButt"><a href="/wall">NewsFeed</a></button>
+            <button class="editButt"><a href="/logout">Logout</a></button>
+        </div>
+        <div class="contentEd">
+            <h1>Edit Message</h1>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="saveDelete">
+            <form action = "/messages/{{message.id}}/update" method="POST">
+                {% csrf_token %}
+                <p><b><u>MESSAGE:  </u></b><input class="edMessage" type="text" name="content" value="{{message.content}}"></p>
+                <button class="editButt" type="submit">Save</button>
+            </form>
+            <form action = "/messages/{{message.id}}/delete" method="POST">
+                {% csrf_token %}
+                <button class="editButt" type= "submit">Delete</button>
+            </form>
+        </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

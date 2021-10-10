@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div class="userWrapper">
+        <div class="titleCentUser">
+            <div class="titleWall">
+                <h1>Veterans Connect</h1>
+                <div class="white">
+                    <p class="white">"A Place Where All Veterans Belong"</p>
+                </div>
+            </div>
+            <img src="https://cdn2.bigcommerce.com/n-nr1m3w/3tc5m/products/268/images/739/IRflag__51853.1435790667.1280.1280.png?c=2" alt="Black and White American Flag" style="width:300px; height:150px;margin-top:20px;">
+        </div>
+        <div class="wallheadUser">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+            <div class="WBUTT">
+                <button class="wallButt"><a href="/wall">NewsFeed</a></button>
+                <button class="wallButt"><a href="/logout">Logout</a></button>
+            </div>
+        </div>
+        <h1 class="Stat"><u>About {{user.first_name}} {{user.last_name}}</u></h1>
+        <p class = "about">{{user.first_name}} {{user.last_name}} is a Veteran of the United State's {{user.branch}}.</p>
+        {% if messages %}
+
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="statback">
+            <h2 class="usertitle">{{user.first_name}} {{user.last_name}}'s Posts</h2>
+            <div class="userContent">
+                {% for message in user.messages.all %}
+                <p><b>{{message.created_at}}</b></p>
+                <p>{{message.content}}</p>
+            {% endfor %}
+            </div>
+    
+            <h2 class="usertitle">{{user.first_name}} {{user.last_name}}'s Comments</h2>
+            <div class="userContent">
+                {% for comment in user.comments.all %}
+                <p><b>{{comment.created_at}}</b></p>
+                <p>{{comment.content}}</p>
+                {% endfor %}
+            </div>
+            
+    
+            <h2 class="usertitle"> Messages Liked by {{user.first_name}} {{user.last_name}}</h2>
+            <div class="userContent">
+                {% for message in user.messages_user_liked.all %}
+                <p><b>{{message.created_at}}</b></p>
+                    <p>{{message.content}}</p>
+                {% endfor %}
+            </div>
+        </div>
+       
+        
+    </div>
+    
+</body>
+</html>

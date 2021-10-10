@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterans Connect</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div class="indexWrapper">
+        <div class="titleCentUser">
+            <div class="titleWall">
+                <h1>Veterans Connect</h1>
+                <div class="white">
+                    <p class="white">"A Place Where All Veterans Belong"</p>
+                </div>
+            </div>
+            <img src="https://cdn2.bigcommerce.com/n-nr1m3w/3tc5m/products/268/images/739/IRflag__51853.1435790667.1280.1280.png?c=2" alt="Black and White American Flag" style="width:300px; height:150px;margin-top:20px;">
+        </div>
+        <div class="wallheadUser">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+            <div class="WBUTT">
+                <button class="wallButt"><a href="/wall">NewsFeed</a></button>
+                <button class="wallButt"><a href="/logout">Logout</a></button>
+                <form action = "/users/{{user.id}}/deleteUser" method="POST">
+                    {% csrf_token %}
+                    <button class="editButt" type= "submit">Delete Account</button>
+                </form>
+            </div>
+        </div>
+        <h1>Settings: {{user.first_name}} {{user.last_name}}</h1>
+        <p>Signed in as: {{user.email}}</p>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+    
+        <div class="edInfo">
+            <h2>Edit {{user.first_name}} {{user.last_name}}</h2>
+            <form action='/users/{{user.id}}/update' method="POST">
+                {% csrf_token %}
+                <p>First Name:<input name="first_name" type="text" value="{{user.first_name}}"></p>
+                <p>Last Name:<input name="last_name" type="text" value="{{user.last_name}}"></p>
+                <p>Branch of Service:
+                    <select name="branch" value="{{user.branch}}">
+                        {% if user.branch == 'Select One' %}
+                        <option value="Select One" selected>-- Please Select Your Branch Below --</option>
+                        {% else %}
+                        <option value="Select One">-- Please Select Your Branch Below --</option>
+                        {% endif %}
+                        {% if user.branch == 'Air Force' %}
+                        <option value="Air Force" selected>Air Force</option>
+                        {% else %}
+                        <option value="Air Force">Air Force</option>
+                        {% endif %}
+                        {% if user.branch == 'Army' %}
+                        <option value="Army" selected>Army</option>
+                        {% else %}
+                        <option value="Army">Army</option>
+                        {% endif %}
+                        {% if user.branch == 'Coast Guard' %}
+                        <option value="Coast Guard" selected>Coast Guard</option>
+                        {% else %}
+                        <option value="Coast Guard">Coast Guard</option>
+                        {% endif %}
+                        {% if user.branch == 'Marines' %}
+                        <option value="Marines" selected>Marines</option>
+                        {% else %}
+                        <option value="Marines">Marines</option>
+                        {% endif %}
+                        {% if user.branch == 'Navy' %}
+                        <option value="Navy" selected>Navy</option>
+                        {% else %}
+                        <option value="Navy">Navy</option>
+                        {% endif %}
+                        {% if user.branch == 'Space Force' %}
+                        <option value="Space Force" selected>Space Force</option>
+                        {% else %}
+                        <option value="Space Force">Space Force</option>
+                        {% endif %}
+                    </select>
+                </p>
+                <p>Wars Fought In: {{user.wars}}
+                    <br />
+                    <input name="wars" type="text" value="{{user.wars}}">
+                    <!-- <input type="checkbox" name="wars" value="none"><label for="wars_none">None</label></input>
+                    <input type="checkbox" name="wars" value="WWII"><label for="wars_WWII">World War II</label></input>
+                    <input type="checkbox" name="wars" value="Korea"><label for="wars_Korea">Korea</label></input>
+                    <input type="checkbox" name="wars" value="Vietnam"><label for="wars_Vietnam">Vietnam</label></input>
+                    <input type="checkbox" name="wars" value="DS"><label for="wars_DS">Desert Storm</label></input>
+                    <input type="checkbox" name="wars" value="Afghan"><label for="wars_Afghan">Afghanistan</label></input>
+                    <input type="checkbox" name="wars" value="Iraq"><label for="wars_Iraq">Iraq</label></input>
+                    <input type="checkbox" name="wars" value="Syria"><label for="wars_Syria">Syria</label></input> -->
+                </p>
+                <p>Email Address:<input name="email" type="email" value="{{user.email}}"></p>
+                <p>Password:<input name="password" type="password" value="{{user.password}}"></p>
+                <p>Confirm Password:<input name="confirm_password" type="password" value="{{user.password}}"> </p>
+                <button class= "indexButt" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

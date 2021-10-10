@@ -1,0 +1,275 @@
+.LoginWrapper {
+    display: flex;
+    justify-content: right;
+    background-image: url("https://mwi.usma.edu/wp-content/uploads/2016/11/13954429399_b2956fce5b_k.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+}
+.LoginWelcome {
+    display: inline-flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    padding-right: 150px;
+    width: 400px;
+    justify-content: start;
+    margin-top: 50px;
+}
+.title {
+    color:olivedrab;
+    text-shadow: 10px  black ;
+    
+}
+.LoginRegister {
+    flex-direction: column;
+    border-radius: 2px black;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 100px;
+}
+
+.WallWrapper {
+    background-image: url("https://ichef.bbci.co.uk/news/976/cpsprodpb/A84D/production/_106858034_gettyimages-479562282.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 800px;
+    display: flex;
+    justify-content: center;
+    /* padding-left: 150px; */
+}
+.wallcontent {
+    display: block;
+}
+.textbox{
+    height:50px;
+    width: 750px;
+}
+.commentBox{
+    height:30px;
+    width: 450px;
+}
+/* button{
+    width: 65px;
+} */
+.Wallform{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.comment {
+    padding-left: 45px;
+}
+.wallButt{
+    background-color: rgb(156, 209, 131);
+    width: fit-content;
+    height: fit-content;
+}
+.newsfeed {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-style: italic;
+}
+.messageBox {
+    margin-top: 100px;
+    background: rgb(223, 206, 183);
+    padding: 3px 0px 10px 10px;
+    border: 2px solid black;
+    border-radius: 25px;
+    
+}
+.comment{
+    background: lightgray;
+    width: 550px;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin-top:5px;
+    
+}
+/* /* .wallContent{
+    /* display: flex;
+    flex-direction: column; */
+    /* margin-top: 50px;
+    border: 2px solid black;
+    border-radius:25px;
+    padding-left:15px;
+    padding-bottom: 10px;
+} */
+
+.editWrapper {
+    background-image: url("https://ichef.bbci.co.uk/news/976/cpsprodpb/A84D/production/_106858034_gettyimages-479562282.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 450px;
+    margin-top: 5px;
+}
+.editButt{
+    background-color: rgb(156, 209, 131);
+    width:fit-content;
+    text-decoration: none;
+}
+.saveDelete{
+    display: block;
+    background: rgb(238, 223, 204);
+    width: 700px;
+}
+.editHead{
+    display: flex;
+    justify-content:space-between;
+    margin-top: 45px;
+    margin-right: 500px;
+    margin-bottom:10px;
+}
+.edMessage{
+    height:50px;
+    width: 450px;
+}
+.contentEd{
+    border: 3px solid black;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.indexWrapper{
+    background-image: url("https://ichef.bbci.co.uk/news/976/cpsprodpb/A84D/production/_106858034_gettyimages-479562282.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 800px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    margin-top: 5px;
+    color: white;
+}
+
+.indexButt{
+    background-color: rgb(156, 209, 131);
+    width:fit-content;
+    text-decoration: none;
+}
+.indHead{
+    display: flex;
+    justify-content:space-between;
+    margin-top: 45px;
+    width: 150px;
+}
+
+.edInfo {
+    border: 2px Solid Black;
+    width: fit-content;
+    padding: 10px 50px;
+    background: rgb(207, 205, 202);
+    color: black;
+}
+.userWrapper{
+    background-image: url("https://ichef.bbci.co.uk/news/976/cpsprodpb/A84D/production/_106858034_gettyimages-479562282.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 800px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    margin-top: 5px;
+}
+.userContent{
+    background:rgb(228, 228, 228);
+    width: 700px;
+    border-radius:25px;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    
+}
+.usertitle{
+    padding-left: 10px;
+    color:olivedrab;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.titleCent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.titleWall{
+    color:olivedrab;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-size: 28px;
+    display: flex;
+    flex-direction: column;
+}
+.wallhead {
+    display: flex;
+    justify-content: end;
+    color: white;
+    font-style: italic;
+}
+.WBUTT{
+    display: inline-flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 30px;
+    justify-content: end;
+}
+.white{
+    color:white;
+    margin-top: -15px;
+    font-size:20px;
+}
+.flag{
+    width: 100px;
+}
+.titleCentUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-right: 700px;
+}
+.wallheadUser {
+    display: flex;
+    justify-content: end;
+    color: white;
+    font-style: italic;
+    padding-right: 700px;
+}
+.Stat{
+    color:white;
+}
+.statback{
+    background: rgb(199, 189, 156);
+    width: 900px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.about{
+    color:white;
+    font-size: 18px;;
+}
+

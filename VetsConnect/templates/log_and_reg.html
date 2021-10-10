@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterans Connect Login and Registration</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div class ="LoginWrapper">
+        <div class="LoginWelcome">
+            <div class="title">
+                <h1>Veterans Connect</h1>
+            </div>
+            <p>Connect with Veterans across the United States for support adjusting back to civilian life, war injuries, or any other topic that your brother and sisters would only understand.</p>
+        </div>
+        <div class="LoginRegister">
+            <h2>Register</h2>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <p>First Name:<input name="first_name" type="text"></p>
+                <p>Last Name:<input name="last_name" type="text"></p>
+                <p>Branch of Service:
+                    <select name="branch">
+                        <option value="Select One">-- Please Select Your Branch Below --</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Army">Army</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Navy">Navy</option>
+                        <option value="Space Force">Space Force</option>
+                    </select></p>
+                <p>Wars Fought In: <input name="wars" type="text">
+                    <!-- <input type="checkbox" name="wars" value="none"><label for="wars_none">None</label></input>
+                    <input type="checkbox" name="wars" value="WWII"><label for="wars_WWII">World War II</label></input>
+                    <input type="checkbox" name="wars" value="Korea"><label for="wars_Korea">Korea</label></input>
+                    <input type="checkbox" name="wars" value="Vietnam"><label for="wars_Vietnam">Vietnam</label></input>
+                    <input type="checkbox" name="wars" value="DS"><label for="wars_DS">Desert Storm</label></input>
+                    <input type="checkbox" name="wars" value="Afghan"><label for="wars_Afghan">Afghanistan</label></input>
+                    <input type="checkbox" name="wars" value="Iraq"><label for="wars_Iraq">Iraq</label></input>
+                    <input type="checkbox" name="wars" value="Syria"><label for="wars_Syria">Syria</label></input> -->
+                </p>
+
+                <p>Email Address:<input name="email" type="email"></p>
+                <p>Password:<input name="password" type="password"></p>
+                <p>Confirm Password:<input name="confirm_password" type="password"></p>
+                <button type="submit">Register</button>
+            </form>
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <p>Email Address:<input name="email" type="email"></p>
+                <p>Password:<input name="password" type="password"></p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>
